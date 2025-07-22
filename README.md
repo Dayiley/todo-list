@@ -1,12 +1,89 @@
-# React + Vite
+# Todo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple to-do list application built using React and Vite. The app displays a list of tasks and demonstrates how to structure a single-page React application with a clean and minimal setup. It’s the foundation for future assignments and practice projects.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation Instructions
 
-## Expanding the ESLint configuration
+To set up the project locally, follow these steps:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/dayiley/todo-list.git
+cd todo-list
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+This will install all required dependencies listed in `package.json`.
+
+---
+
+## How to Run the Development Server
+
+To start the app in development mode:
+
+```bash
+npm run dev
+```
+
+After the server starts, open your browser and go to:
+
+```
+http://localhost:5173
+```
+
+You should see the app title (“Todo List”)
+
+---
+
+## App Features
+
+-
+
+---
+
+## Project Structure
+
+```
+todo-list/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+├── .prettierrc
+└── README.md
+```
+
+---
+
+## Development Tools (Optional)
+
+- **ESLint** – For identifying code issues and enforcing style
+- **Prettier** – For consistent code formatting
+- Both tools can be configured with VS Code extensions
+
+---
+
+## Author
+
+Created by [@dayiley](https://github.com/dayiley)
+
+---
+
+## 📝 License
+
+This project is provided for educational purposes. No license has been assigned.
