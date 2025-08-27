@@ -139,7 +139,6 @@ function App() {
       t.id === editedTodo.id ? { ...editedTodo } : t
     );
     setTodoList(optimistic);
-    setIsLoading(true);
 
     const payload = {
       records: [
