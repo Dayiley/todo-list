@@ -1,6 +1,15 @@
 import TodoListItem from './TodoListItem';
 
-function TodoList({ todoList = [], onCompleteTodo, onUpdateTodo }) {
+function TodoList({
+  todoList = [],
+  isLoading = false,
+  onCompleteTodo,
+  onUpdateTodo,
+}) {
+  if (isLoading) {
+    return <p>todo list loading...</p>;
+  }
+
   const filteredTodoList = todoList.filter((t) => !t.isCompleted);
 
   return filteredTodoList.length === 0 ? (
