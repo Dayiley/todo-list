@@ -135,11 +135,11 @@ function App() {
   async function updateTodo(editedTodo) {
     const original = todoList.find((t) => t.id === editedTodo.id);
 
-    // optimista
     const optimistic = todoList.map((t) =>
       t.id === editedTodo.id ? { ...editedTodo } : t
     );
     setTodoList(optimistic);
+    setIsLoading(true);
 
     const payload = {
       records: [
@@ -167,19 +167,17 @@ function App() {
       if (!resp.ok) {
         throw new Error(resp.statusText || `HTTP ${resp.status}`);
       }
-      // si quieres, puedes leer {records} y asegurar sincronía total
     } catch (err) {
       console.error(err);
       setErrorMessage(
         (err.message || 'Failed to update todo') + '. Reverting todo...'
       );
-      // rollback
       const reverted = todoList.map((t) =>
         t.id === editedTodo.id ? original : t
       );
       setTodoList(reverted);
     } finally {
-      setIsSaving(false); // si reúsas esta bandera
+      setIsSaving(false);
     }
   }
 
