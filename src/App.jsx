@@ -44,7 +44,7 @@ function App() {
       }
     };
     fetchTodos();
-  }, [url, token]);
+  }, []);
 
   //adding new todo to Airtable
   async function addTodo(title) {
