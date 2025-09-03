@@ -89,7 +89,10 @@ function App() {
 
     try {
       setIsSaving(true);
-      const resp = await fetch(url, options);
+      const resp = await fetch(
+        encodeUrl({ sortField, sortDirection, queryString }),
+        options
+      );
       if (!resp.ok) {
         throw new Error(resp.statusText || `HTTP ${resp.status}`);
       }
