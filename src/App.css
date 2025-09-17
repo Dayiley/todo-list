@@ -1,0 +1,26 @@
+#root {
+  background-color: lavender;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+  color: rgba(71, 18, 71);
+}
+
+button {
+  background-color: rgb(73, 0, 141);
+  color: aliceblue;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 0px rgb(90, 90, 90);
+}
+button:hover {
+  background-color: rgb(174, 149, 198);
+  color: rgb(73, 0, 141);
+}
+form input {
+  border: solid rgba(71, 18, 71, 0.433) 1px;
+  border-radius: 3px;
+  margin-right: 2px;
+}

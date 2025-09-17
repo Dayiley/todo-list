@@ -1,4 +1,26 @@
 import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+`;
+
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+`;
+
+const StyledInput = styled.input`
+  padding: 0.25rem;
+`;
+
+const StyledButton = styled.button`
+  padding: 0.25rem;
+`;
 
 function TodosViewForm({
   sortField,
@@ -19,21 +41,21 @@ function TodosViewForm({
   }, [localQueryString, setQueryString]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <label>
+    <StyledForm onSubmit={(e) => e.preventDefault()}>
+      <StyledLabel>
         Search todos:
-        <input
+        <StyledInput
           type="text"
           value={localQueryString}
           onChange={(e) => setLocalQueryString(e.target.value)}
         />
-        <button type="button" onClick={() => setLocalQueryString('')}>
+        <StyledButton type="button" onClick={() => setLocalQueryString('')}>
           Clear
-        </button>
-      </label>
+        </StyledButton>
+      </StyledLabel>
       <br />
 
-      <label>
+      <StyledLabel>
         Sort by:
         <select
           value={sortField}
@@ -42,9 +64,9 @@ function TodosViewForm({
           <option value="title">Title</option>
           <option value="createdTime">Time added</option>
         </select>
-      </label>
+      </StyledLabel>
 
-      <label>
+      <StyledLabel>
         Direction:
         <select
           value={sortDirection}
@@ -53,8 +75,8 @@ function TodosViewForm({
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
-      </label>
-    </form>
+      </StyledLabel>
+    </StyledForm>
   );
 }
 
