@@ -3,6 +3,7 @@ import TodoList from './features/TodoList/TodoList';
 import TodoForm from './features/TodoForm';
 import React, { useState, useEffect, useCallback } from 'react';
 import TodosViewForm from './features/TodosViewForm';
+import styles from './App.module.css';
 
 const url = `https://api.airtable.com/v0/${import.meta.env.VITE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
 const token = `Bearer ${import.meta.env.VITE_PAT}`;
@@ -35,6 +36,9 @@ function App() {
         headers: { Authorization: token },
       };
       try {
+        // Simulación de error para probar mensaje de error y CSS
+        // throw new Error('Simulated error for testing');
+
         const resp = await fetch(encodeUrl(), options);
         if (!resp.ok) {
           throw new Error(resp.statusText || `HTTP ${resp.status}`);
@@ -195,7 +199,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.appContainer}>
       <h1>My Todo App</h1>
 
       <TodoForm onAddTodo={addTodo} isSaving={isSaving} />
@@ -218,7 +222,7 @@ function App() {
       />
 
       {errorMessage && (
-        <div style={{ marginTop: 16 }}>
+        <div className={styles.errorBox}>
           <hr />
           <p role="alert">Error: {errorMessage}</p>
           <button onClick={() => setErrorMessage('')}>Dismiss</button>
