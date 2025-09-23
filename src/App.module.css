@@ -1,0 +1,15 @@
+.appContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.errorBox {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  padding: 8px;
+  margin-top: 16px;
+  border-radius: 4px;
+}
