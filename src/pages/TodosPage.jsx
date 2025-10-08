@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TodoForm from '../features/TodoForm';
 import TodoList from '../features/TodoList/TodoList';
 import TodosViewForm from '../features/TodosViewForm';
 import styles from '../App.module.css';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export default function TodosPage({
   todoList,
@@ -25,16 +24,20 @@ export default function TodosPage({
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const itemsPerPage = 15;
-  const currentPage = parseInt(searchParams.get('page') || '1', 10);
+  const incompleteTodos = todoList.filter((t) => !t.isCompleted);
 
-  const totalTodos = todoList.length;
-  const totalPages = Math.ceil(totalTodos / itemsPerPage);
+  const itemsPerPage = 5;
+  const totalTodos = incompleteTodos.length;
+  const totalPages = Math.max(1, Math.ceil(totalTodos / itemsPerPage));
+  const currentPage = Math.min(
+    Math.max(parseInt(searchParams.get('page') || '1', 10), 1),
+    totalPages
+  );
 
   const indexOfFirstTodo = (currentPage - 1) * itemsPerPage;
   const indexOfLastTodo = indexOfFirstTodo + itemsPerPage;
 
-  const currentTodos = todoList.slice(indexOfFirstTodo, indexOfLastTodo);
+  const currentTodos = incompleteTodos.slice(indexOfFirstTodo, indexOfLastTodo);
 
   function handlePreviousPage() {
     if (currentPage > 1) {
@@ -47,6 +50,12 @@ export default function TodosPage({
       setSearchParams({ page: (currentPage + 1).toString() });
     }
   }
+
+  useEffect(() => {
+    if (currentTodos.length === 0 && currentPage > 1) {
+      setSearchParams({ page: (currentPage - 1).toString() });
+    }
+  }, [currentTodos, currentPage, setSearchParams]);
 
   useEffect(() => {
     if (totalPages > 0) {
@@ -71,15 +80,6 @@ export default function TodosPage({
 
       <hr />
 
-      <TodosViewForm
-        sortField={sortField}
-        setSortField={setSortField}
-        sortDirection={sortDirection}
-        setSortDirection={setSortDirection}
-        queryString={queryString}
-        setQueryString={setQueryString}
-      />
-
       <div className={styles.paginationControls}>
         <button onClick={handlePreviousPage} disabled={currentPage === 1}>
           Previous
@@ -97,10 +97,21 @@ export default function TodosPage({
         </button>
       </div>
 
+      <hr />
+
+      <TodosViewForm
+        sortField={sortField}
+        setSortField={setSortField}
+        sortDirection={sortDirection}
+        setSortDirection={setSortDirection}
+        queryString={queryString}
+        setQueryString={setQueryString}
+      />
+
       {errorMessage && (
         <div className={styles.errorBox}>
           <hr />
-          <p role="alert">Error: {todoState.errorMessage}</p>
+          <p role="alert">Error: {errorMessage}</p>
           <button onClick={onClearError}>Dismiss</button>
         </div>
       )}

@@ -24,3 +24,10 @@ form input {
   border-radius: 3px;
   margin-right: 2px;
 }
+
+hr {
+  border: 0;
+  height: 2px;
+  background-color: #000000;
+  margin: 1rem 0;
+}

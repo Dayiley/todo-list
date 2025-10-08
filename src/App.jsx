@@ -51,9 +51,7 @@ function App() {
         headers: { Authorization: token },
       };
       try {
-        // Simulación de error para probar mensaje de error y CSS
         // throw new Error('Simulated error for testing');
-
         const resp = await fetch(encodeUrl(), options);
         if (!resp.ok) {
           throw new Error(resp.statusText || `HTTP ${resp.status}`);
