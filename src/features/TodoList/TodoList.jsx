@@ -11,13 +11,11 @@ function TodoList({
     return <p>todo list loading...</p>;
   }
 
-  const filteredTodoList = todoList.filter((t) => !t.isCompleted);
-
-  return filteredTodoList.length === 0 ? (
+  return todoList.length === 0 ? (
     <p>Add todo above to get started</p>
   ) : (
     <ul className={styles.list}>
-      {filteredTodoList.map((todo) => (
+      {todoList.map((todo) => (
         <TodoListItem
           key={todo.id}
           todo={todo}
